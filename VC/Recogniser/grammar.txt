@@ -1,0 +1,109 @@
+/*
+1. 
+(checked)(DONE) program             ->  ( func-decl | var-decl )*
+
+
+2.
+// declarations
+(checked)(DONE) func-decl           -> type identifier para-list compound-stmt
+(checked)(DONE) var-decl            -> type init-declarator-list ";"
+(checked)(DONE) init-declarator-list-> init-declarator ( "," init-declarator )*
+(checked)(DONE) init-declarator     -> declarator ( "=" initialiser )? 
+(checked)(DONE) declarator          -> identifier ("[" INTLITERAL? "]")? (modified version to eliminate common-prefix situation)
+(checked)(DONE) declarator          -> identifier 
+                            		|  identifier "[" INTLITERAL? "]"         
+(checked)(DONE) initialiser         -> expr 
+                    		|  "{" expr ( "," expr )* "}"
+
+3.
+// primitive types
+(checked)(DONE) type                -> void | boolean | int | float  
+
+4.
+// identifiers
+(checked)(DONE) identifier          -> ID 
+
+5.
+// statements 
+(checked)(DONE) compound-stmt       -> "{" var-decl* stmt* "}" 
+(checked)(DONE) stmt                -> compound-stmt
+                    		|  if-stmt 
+                    		|  for-stmt
+                    		|  while-stmt 
+                    		|  break-stmt
+                    		|  continue-stmt
+                    		|  return-stmt
+                    		|  expr-stmt
+(checked)(DONE) if-stmt             -> if "(" expr ")" stmt ( else stmt )?
+(checked)(DONE) for-stmt            -> for "(" expr? ";" expr? ";" expr? ")" stmt
+(checked)(DONE) while-stmt          -> while "(" expr ")" stmt
+(checked)(DONE) break-stmt          -> break ";"
+(checked)(DONE) continue-stmt       -> continue ";"
+(checked)(DONE) return-stmt         -> return expr? ";"
+(checked)(DONE) expr-stmt           -> expr? ";"
+
+6.
+// expressions 
+(checked)(DONE) expr                -> assignment-expr
+(checked)(DONE) assignment-expr     -> ( cond-or-expr "=" )* cond-or-expr
+
+
+(checked)(DONE) cond-or-expr        -> cond-and-expr ( "||" cond-and-expr )*  (modified version to eliminate left-recursive situation)
+(checked)(DONE) cond-or-expr        -> cond-and-expr 
+                    	    |  cond-or-expr "||" cond-and-expr
+                    
+(checked)(DONE) cond-and-expr       -> equality-expr ( "&&" equality-expr )*  (modified version to eliminate left-recursive situation)                    
+(checked)(DONE) cond-and-expr       -> equality-expr 
+                    	    |  cond-and-expr "&&" equality-expr
+
+(checked)(DONE) equality-expr       -> (rel-expr "=="||"!=")* rel-expr  (modified version to eliminate left-recursive situation)
+(checked)(DONE) equality-expr       -> rel-expr
+                    		|  equality-expr "==" rel-expr
+                    		|  equality-expr "!=" rel-expr
+                    
+(checked)(DONE) rel-expr            -> (additive-expr "<"||"<="||">"||">=")* additive-expr (modified version to eliminate left-recursive situation)           
+(checked)(DONE) rel-expr            -> additive-expr
+                   			|  rel-expr "<" additive-expr
+                    		|  rel-expr "<=" additive-expr
+                    		|  rel-expr ">" additive-expr
+                    		|  rel-expr ">=" additive-expr
+                    
+(checked)(DONE)additive-expr       -> (multiplicative-expr "+"||"-")* multiplicative-expr (modified version to eliminate left-recursive situation)                  
+(checked)(DONE)additive-expr       -> multiplicative-expr
+                    	   |  additive-expr "+" multiplicative-expr
+                    	   |  additive-expr "-" multiplicative-expr
+
+(checked)(DONE) multiplicative-expr -> (unary-expr "*"||"/")* unary-expr (modified version to eliminate left-recursive situation) 
+(checked)(DONE) multiplicative-expr -> unary-expr
+                    		|  multiplicative-expr "*" unary-expr
+                    		|  multiplicative-expr "/" unary-expr
+                    
+(checked)(DONE) unary-expr          -> "+" unary-expr   				//Question 1: What if ++++++++++++++5 ?
+                    		|  "-" unary-expr
+                    		|  "!" unary-expr
+                    		|  primary-expr
+
+(checked)(DONE) primary-expr        -> identifier ( arg-list?|"[" expr "]" ) (modified version to eliminate common-prefix situation)
+                    | "(" expr ")"
+                    | INTLITERAL
+                    | FLOATLITERAL
+                    | BOOLLITERAL
+                    | STRINGLITERAL
+(checked)(DONE) primary-expr        -> identifier arg-list?
+                    | identifier "[" expr "]"
+                    | "(" expr ")"
+                    | INTLITERAL
+                    | FLOATLITERAL
+                    | BOOLLITERAL
+                    | STRINGLITERAL
+
+7.
+// parameters
+(checked)(DONE) para-list           -> "(" proper-para-list? ")"    
+(checked)(DONE) proper-para-list    -> para-decl ( "," para-decl )* 
+(checked)(DONE) para-decl           -> type declarator   			
+(checked)(DONE) arg-list            -> "(" proper-arg-list? ")"
+(checked)(DONE) proper-arg-list     -> arg ( "," arg )*
+(checked)(DONE) arg                 -> expr
+ 
+*/

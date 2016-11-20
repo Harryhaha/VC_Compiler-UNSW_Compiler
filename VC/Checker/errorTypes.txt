@@ -1,0 +1,59 @@
+private String errMesg[] = {
+    "*0: main function is missing",                            
+    "*1: return type of main is not int",                    
+
+    // defined occurrences of identifiers
+    // for global, local and parameters
+    "*2: identifier redeclared",              //PASS                
+    "*3: identifier declared void",           //PASS               
+    "*4: identifier declared void[]",                      
+
+    // applied occurrences of identifiers
+    "*5: identifier undeclared",                          
+
+    // assignments
+    "*6: incompatible type for =",                       
+    "*7: invalid lvalue in assignment",                 
+
+     // types for expressions 
+    "*8: incompatible type for return",                
+    "*9: incompatible type for this binary operator", 
+    "*10: incompatible type for this unary operator",
+
+     // scalars
+     "*11: attempt to use an array/fuction as a scalar", 
+
+     // arrays
+     "*12: attempt to use a scalar/function as an array",
+     "*13: wrong type for element in array initialiser",
+     "*14: invalid initialiser: array initialiser for scalar",   
+     "*15: invalid initialiser: scalar initialiser for array",  
+     "*16: excess elements in array initialiser",              
+     "*17: array subscript is not an integer",                
+     "*18: array size missing",                              
+
+     // functions
+     "*19: attempt to reference a scalar/array as a function",
+
+     // conditional expressions in if, for and while
+    "*20: if conditional is not boolean",                    
+    "*21: for conditional is not boolean",                  
+    "*22: while conditional is not boolean",               
+
+    // break and continue
+    "*23: break must be in a while/for",                  
+    "*24: continue must be in a while/for",              
+
+    // parameters 
+    "*25: too many actual parameters",                  
+    "*26: too few actual parameters",                  
+    "*27: wrong type for actual parameter",           
+
+    // reserved for errors that I may have missed (J. Xue)
+    "*28: misc 1",
+    "*29: misc 2",
+
+    // the following two checks are optional 
+    "*30: statement(s) not reached",     
+    "*31: missing return statement",       //PASS
+  };
